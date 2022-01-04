@@ -1,0 +1,24 @@
+{
+  "name": "refactoring-2nd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest --watchAll --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/annahxxl/refactoring-2nd.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/annahxxl/refactoring-2nd/issues"
+  },
+  "homepage": "https://github.com/annahxxl/refactoring-2nd#readme",
+  "devDependencies": {
+    "jest": "^27.4.5"
+  }
+}
