@@ -9,7 +9,7 @@ function statement(invoice, plays) {
   }).format;
 
   for (let perf of invoice.performances) {
-    const play = plays[perf.playId];
+    const play = plays[perf.playID];
     let thisAmount = 0;
 
     switch (play.type) {
@@ -36,7 +36,7 @@ function statement(invoice, plays) {
     if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
 
     // 청구 내역을 출력한다.
-    result += ` ${play.name}: ${format(thisAmount / 100)} (${
+    result += `  ${play.name}: ${format(thisAmount / 100)} (${
       perf.audience
     }석)\n`;
     totalAmount += thisAmount;
@@ -46,3 +46,5 @@ function statement(invoice, plays) {
   result += `적립 포인트: ${volumeCredits}점\n`;
   return result;
 }
+
+module.exports = statement;
