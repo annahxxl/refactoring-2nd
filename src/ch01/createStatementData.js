@@ -1,4 +1,5 @@
-const PerformanceCalculator = require("./calculator/PerformanceCalculator");
+const TragedyCalculator = require("./calculator/TragedyCalculator");
+const ComedyCalculator = require("./calculator/ComedyCalculator");
 
 function createStatementData(invoice, plays) {
   const statementData = {};
@@ -9,7 +10,7 @@ function createStatementData(invoice, plays) {
   return statementData;
 
   function enrichPerformance(aPerformance) {
-    const calculator = new PerformanceCalculator(
+    const calculator = createPerformanceCalculator(
       aPerformance,
       playFor(aPerformance)
     );
@@ -30,6 +31,15 @@ function createStatementData(invoice, plays) {
 
   function totalVolumeCredits(data) {
     return data.performances.reduce((total, p) => total + p.volumeCredits, 0);
+  }
+
+  function createPerformanceCalculator(aPerformance, aPlay) {
+    switch (aPlay.type) {
+      case "tragedy":
+        return new TragedyCalculator(aPerformance, aPlay);
+      case "comedy":
+        return new ComedyCalculator(aPerformance, aPlay);
+    }
   }
 }
 
