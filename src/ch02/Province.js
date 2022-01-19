@@ -1,3 +1,5 @@
+const Producer = require("./Producer");
+
 class Province {
   constructor(doc) {
     this._name = doc.name;
