@@ -1,14 +1,12 @@
 const values = [];
 function getValueForPeriod(periodNumber) {
-  const value = values[periodNumber];
-  if (!value) {
-    throw new Error('value is undefined');
+  return values[periodNumber] ?? 0; // JS에선 배열의 인덱스를 벗어난다고 해서 에러가 발생하지 않아 가능
+  /*
+  if (periodNumber < 0 || periodNumber >= values.length) {
+    return 0;
   }
-  return value;
+  return values[periodNumber];
+  */
 }
 
-try {
-  getValueForPeriod(-10);
-} catch (error) {
-  console.log('에러 발생!');
-}
+getValueForPeriod(-10);
