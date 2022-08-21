@@ -1,24 +1,31 @@
 export function printOwing(invoice, console, clock) {
-  let outstanding = 0;
+  // class로 만들어 리팩토링 하는 것을 추천!
+  printBanner(console);
+  let outstanding = calculateOutstanding(invoice);
+  recordDueDate(invoice, clock);
+  printDetails(console, invoice, outstanding);
+}
 
+function printBanner(console) {
   console.log("***********************");
   console.log("**** Customer Owes ****");
   console.log("***********************");
+}
 
-  // calculate outstanding
-  for (const o of invoice.orders) {
-    outstanding += o.amount;
-  }
+function calculateOutstanding(invoice) {
+  return invoice.orders.reduce((sum, order) => (sum += order.amount), 0);
+}
 
-  // record due date
+function recordDueDate(invoice, clock) {
   const today = clock.today;
   invoice.dueDate = new Date(
     today.getFullYear(),
     today.getMonth(),
     today.getDate() + 30
   );
+}
 
-  //print details
+function printDetails(console, invoice, outstanding) {
   console.log(`name: ${invoice.customer}`);
   console.log(`amount: ${outstanding}`);
   console.log(`due: ${invoice.dueDate.toLocaleDateString("en-US")}`);
